@@ -1,21 +1,21 @@
 $('#submit').click(function(){
 
 const search=$('#search').val()
-const website=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}&type=video&key=${key}`
+const youUrl=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}&type=video&key=${key}`
 
 $.ajax({
-   url: website,
+   url: youUrl,
    success:function (data){
-       console.log(data, website)
+       console.log(data, youUrl)
            video = data.items
 
        for (i = 0; i < video.length; i++){
            watchVideo="https://www.youtube.com/watch?v=" + video[i].id.videoId
            console.log(watchVideo)
-           $("#video"+i).attr("href", watchVideo)
+           $("#video").attr("href", watchVideo)
            $(".card-img-top"+i).attr("src",video[i].snippet.thumbnails.high.url )
-
-       $('.youtubeItems').slideDown(1000)
+           console.log(video[i].snippet.thumbnails.default.url)
+       $('.youtubeVid').slideDown(1000)
 
        }
    }
